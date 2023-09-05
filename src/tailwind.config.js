@@ -4,7 +4,8 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
       fontFamily: {
-        'card': ['Franklin Gothic Medium', 'Arial Narrow']
+        'card': ['Franklin Gothic Medium', 'Arial Narrow'],
+        'yoizen':["roboto",'sans-serif']
       },
       fontSize: {
         'xs': '12px',

@@ -3,8 +3,12 @@ module.exports = {
   content: ["./index.html",
     "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
+      backgroundSize: {
+        "30%":"30%"
+      },
       fontFamily: {
-        'card': ['Franklin Gothic Medium', 'Arial Narrow']
+        'card': ['Franklin Gothic Medium', 'Arial Narrow'],
+        'yoizen':['roboto','sans-serif']
       },
       fontSize: {
         'xs': '12px',
@@ -97,7 +101,7 @@ module.exports = {
           '600': '600px'
         },
         backgroundImage:{
-          "header": "url(/src/images/logo-yoizen.jpg)"
+          "header": "url(/src/images/logo-positivo.png)"
         }
   
       },

@@ -1,10 +1,39 @@
+import { useState, useEffect } from "react"
+import {Section} from "../sectionsContainer/section"
 
 export const Main = () => {
+
+    const [data, setData] = useState([])
+
+    const fetchInfo = () => {
+        return fetch("http://localhost:8080/api/agent/mensajes-salientes", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" }
+        })
+            .then((res) => {
+                const response = res.json()
+                    .then((data) =>{
+                        setData(data)
+                    })
+                        
+                // console.log(res.sections)
+            })
+    }
+
+    useEffect(() => {
+        // console.log(fetchInfo())
+        fetchInfo()
+    }, [])
+
+    console.log(data)
     return (
-        <div className="w-450 h-450 d-flex flex-col">
-            <h1 className="text-2xl font-bold underline text-center text-red-200 ">Hello world!</h1>
-            {/* <img src={require("../../images/logo-yoizen.jpg")} /> */}
-            
+
+        <div >
+            <div className="max-w-full grid lg:grid-cols-4 cols-span-2 sm:grid-cols-1 justify-items-center align-items-center justify-center mt-100">
+                {data.map((item) =><Section key={item} item={item}/>)}
+            </div>
+
+
         </div>
     )
 }

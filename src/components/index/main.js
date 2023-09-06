@@ -29,7 +29,7 @@ export const Main = () => {
     return (
 
         <div >
-            <div className="max-w-full grid lg:grid-cols-4 cols-span-2 sm:grid-cols-1 justify-items-center align-items-center justify-center mt-100">
+            <div className="max-w-full grid lg:grid-cols-3 gap-y-50 cols-span-2 sm:grid-cols-1 justify-items-center align-items-center justify-center mt-50">
                 {data.map((item) =><Section key={item} item={item}/>)}
             </div>
 

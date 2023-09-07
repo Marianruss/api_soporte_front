@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faS, faSearch, faHeart } from "@fortawesome/free-solid-svg-icons"
+import { Link } from "react-router-dom"
 export const Navbar = () => {
 
 
@@ -7,9 +8,9 @@ export const Navbar = () => {
         <div>
             <div className="h-50 bg-gray-300 flex flex-row gap-x-50 justify-between items-center">
                 <div className="flex flex-row gap-x-50">
-                    <p className="text-black ml-50 mt-5 text-xl font-yoizen">Agente</p>
-                    <p className="text-black mt-5 font-yoizen text-xl">Supervisor</p>
-                    <p className="text-black mt-5 font-yoizen text-xl">Administrador</p>
+                    <Link to={"/articles/agent"}><p className="text-black ml-50 mt-5 text-xl font-yoizen">Agente</p></Link>
+                    <Link to={"/articles/supervisor"}><p className="text-black mt-5 font-yoizen text-xl">Supervisor</p></Link>
+                    <Link to={"/articles/admin"}><p className="text-black mt-5 font-yoizen text-xl">Administrador</p></Link>
                 </div>
 
                 <div className="flex flex-row items-center">

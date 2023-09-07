@@ -4,7 +4,8 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
       backgroundSize: {
-        "30%":"30%"
+        "30%":"30%",
+        "25%":"25%"
       },
       fontFamily: {
         'card': ['Franklin Gothic Medium', 'Arial Narrow'],
@@ -74,7 +75,10 @@ module.exports = {
           '550': '550px',
           '600': '600px',
           '750': '750px',
-          '800': '800px'
+          '800': '800px',
+          '900': '900px',
+          '1200': '1200px',
+          '1500': '1500px'
         },
         height: {
           '5': '5px',
@@ -107,6 +111,7 @@ module.exports = {
       },
     },
     plugins: [
+      require('tw-elements/dist/plugin')
     ],
   }
 

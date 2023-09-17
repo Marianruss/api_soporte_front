@@ -5,6 +5,7 @@ import { Header } from "./components/header/header"
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ArticleContainer } from './components/article/articleContainer';
 import { Entity } from './components/entity/entityContainer';
+import { NewArticle } from './components/newArticle/newArticle';
 // import { Section } from './components/sectionsContainer/section';
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
         <Route path='/articles/:entity/:section/:type' element={<ArticleContainer/>}/>
         <Route path='/articles/:entity/:section' element={<Section/>}/>
         <Route path='/articles/:entity' element={<Entity/>}/>
-
+        <Route path='/newArticle' element={<NewArticle/>}/>
 
       </Routes>
 

@@ -2,6 +2,7 @@ import { useParams } from "react-router"
 import { EntityItem } from "./entityItem"
 import { useState, useEffect } from "react"
 import { Loader } from "../utils/loader"
+import { fetchInfo } from "../../utils/functions/functions"
 
 
 export const Entity = () => {
@@ -11,30 +12,16 @@ export const Entity = () => {
     const { entity } = useParams()
 
     const url = `http://localhost:8080/api/${entity}`
-    const fetchInfo = async () => {
-        return await fetch(url, {
-            method: "GET",
-            headers: { "Content-Type": "application/json" }
-        })
-            .then((res) => {
-                const response = res.json()
-                    .then((d) => {
-                        setData(d)
-                        setLoading(false)
 
-                        console.log(d)
-                    })
-            })
-    }
+    
 
     useEffect(() => {
-        // console.log(fetchInfo())
-        fetchInfo()
-
+        
+        fetchInfo(url,setData,setLoading)
     }, [entity])
 
 
-    console.log(data)
+    // console.log(data)
     return (
         loading
             ? <Loader />

@@ -102,7 +102,10 @@ module.exports = {
           '300': '300px',
           '500': '500px',
           '550': '550px',
-          '600': '600px'
+          '600': '600px',
+          '650': '650px',
+          '700': '700px',
+          '750': '750px',
         },
         backgroundImage:{
           "header": "url(/src/images/logo-positivo.png)"

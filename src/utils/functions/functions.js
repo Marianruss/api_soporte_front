@@ -1,5 +1,23 @@
-// const axios = require("axios")
-// // const fs = require("file")
+
+const { initializeApp } = require('firebase/app');
+const { getStorage, ref, uploadBytes, getDownloadURL } = require('firebase/storage');
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCZ_GdNrTQ4UnbFE5hG72BjOMmd3qp69uI",
+    authDomain: "support-api-da35e.firebaseapp.com",
+    projectId: "support-api-da35e",
+    storageBucket: "support-api-da35e.appspot.com",
+    messagingSenderId: "49503891323",
+    appId: "1:49503891323:web:876c6c49fca16d8bef57de"
+};
+const firebaseApp = initializeApp(firebaseConfig);
+const storage = getStorage(firebaseApp);
+
+
+
+
+
 
 export const fetchInfo = (url, setData, setLoading) => {
     return fetch(url, {
@@ -26,42 +44,40 @@ export const parseString = (string) => {
 }
 
 
-export const uploadImagesToBackend = async (formData) => {
-    // console.log()
-    try {
-        const test = await fetch("http://localhost:8080/files/upload", {
-            method: "POST",
-            // headers: { "Content-Type": "multi-form/data" },
-            body: formData
-        })
-        console.log(test)
+
+async function getImgUrl(imgs) {
+
+    for (let i = 0; i < imgs.length; i++) {
+        try {
+            const url = await getDownloadURL(ref(storage, imgs[i]));
+            console.log(url);
+        } catch (error) {
+            console.log(error);
+        }
+
     }
-    catch (err) {
-        console.log(err)
-    }
-
-}
+};
 
 
-export const uploadImg = async (img) => {
+export const uploadImg = async (imgs) => {
     // Begin file upload
-    console.log("Uploading file to Imgur..");
-    const formData = new FormData()
-    formData.append("image", img)
-
-    const apiUrl = 'https://api.imgur.com/3/image';
-    const apiToken = "779ad106e97aa48";
-
-
-    const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-            Authorization: `Client-ID ${apiToken}`,
-            Cookie: 'IMGURSESSION=014a59b6eef158587ecece1fe9997e33; _nc=1'
-        },
-        body: {img},
-    })
-    console.log(response)
-    return response
+    const imgPaths = [];
+    console.log(imgs.length)
+    for (let i = 0; i < imgs.length; i++) {
+        try {
+            const imgRef = ref(storage, `images/${imgs[i].name}`)
+            await uploadBytes(imgRef, imgs[i]).then(async (res) => {
+                console.log(`img ${i} uploaded`)
+                console.log(res)
+                await imgPaths.push(res.metadata.fullPath)
+            })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    // console.log(imgPaths)
+    getImgUrl(imgPaths)
 }
+
+
 

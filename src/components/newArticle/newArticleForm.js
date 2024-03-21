@@ -6,24 +6,20 @@ import { uploadImg, uploadImagesToBackend } from "../../utils/functions/function
 
 
 
+
 export const ArticleForm = () => {
 
     const [quantity, setQuantity] = useState(0)
     const elements = []
-    const [instructions, setInstructions] = useState()
+    const [instructions, setInstructions] = useState([])
     const [photo, setPhoto] = useState([])
     const [entity, setEntity] = useState("")
 
-    const handleSubmit = () => {
-        const data = {
-
-        }
-    }
 
     for (let i = 0; i <= quantity; i++) {
         elements.push(<div className="flex flex-col gap-20 my-50 border-black border-2 w-400" key={i} >
             <label className="flex flex-row mt-10 justify-around max-h-200 self-center" >
-                <textarea type="text" className="max-h-100" placeholder="Instrucción" id="instruction" />
+                <textarea type="text" className="max-h-100" placeholder="Instrucción" id="instruction" onChange={e => {setInstructions(instructions + e.target.value)}} />
             </label>
             <label className="flex flex-row justify-around gap-20 mb-10 self-center">
 
@@ -43,9 +39,11 @@ export const ArticleForm = () => {
             formData.append("image", photo[i])
         }   
 
-        console.log(formData.get("image"))
+        console.log(photo)
+        console.log(entity)
+        console.log(instructions[0])
 
-        await uploadImg(formData)
+        await uploadImg(photo)
     }
 
 
@@ -65,8 +63,8 @@ export const ArticleForm = () => {
     return (
         <div className="m-auto ">
             <form id="newArticleForm">
-                <select className="mt-20" defaultValue="entidad">
-                    <option value="" disabled name="entity">Entidad</option>
+                <select className="mt-20" defaultValue="entidad" onChange={e => setEntity(e.target.value)}>
+                    <option value="" selected  hidden name="entity">Entidad</option>
                     <option value="agent">Agente</option>
                     <option value="supervisor">Supervisor</option>
                     <option value="admin">Administrador</option>
